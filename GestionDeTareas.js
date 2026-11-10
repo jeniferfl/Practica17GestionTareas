@@ -45,8 +45,7 @@ y muestre en consola:
 */
 function mostrarTareas(lista) {
   for (const tarea of lista) {
-    console.log(`Tarea: ${tarea.nombre} - Estado: 
-      ${tarea.completada ? "Completada" : "Pendiente"}`);
+    console.log(`Tarea: ${tarea.nombre} - Estado: ${tarea.completada ? "Completada" : "Pendiente"}`);
   }
 }
 
@@ -58,7 +57,6 @@ solo las tareas completadas.
 Usar filter.
 */
 const obtenerCompletadas = (lista) => {
-  console.log("Tareas completadas:");
   return lista.filter(tarea => tarea.completada);
 };
 
@@ -70,7 +68,6 @@ solo las tareas pendientes.
 Usar filter.
 */
 const obtenerPendientes = (lista) => {
-  console.log("Tareas pendientes:");
   return lista.filter(tarea => !tarea.completada);
 };
 
@@ -82,7 +79,6 @@ solo los nombres de las tareas.
 Usar map.
 */
 const obtenerNombres = (lista) => {
-  console.log("Nombres de las tareas:");
   return lista.map(tarea => tarea.nombre);
 };
 
@@ -93,7 +89,6 @@ Crear una función que retorne
 el total de tareas.
 */
 function contarTareas(lista) {
-  console.log("Total de tareas:");
   return lista.length;
   
 }
@@ -140,11 +135,16 @@ TODO 7:
 
 - Si el arreglo tareas está vacío:
   mostrar "No hay tareas"
+  
 
 - Si todas las tareas están completadas:
   mostrar "Todas las tareas completadas"
 */
-
+if (tareas.length === 0) {
+  console.log("No hay tareas");
+} else if (tareas.every(tarea => tarea.completada)) {
+  console.log("Todas las tareas completadas");
+}
 
 // =====================================
 // 5. Switch
@@ -192,8 +192,9 @@ Llamar funciones para comprobar que todo funciona correctamente.
 Usar console.log donde sea necesario.
 */ 
 
-console.log("Pruebas del sistema de gestión de tareas:");
-contarTareas(tareas);
-sistema.mostrarTareas();
+console.log("---Pruebas del sistema de gestión de tareas---");
+console.log(`Tareas iniciales: ${contarTareas(sistema.tareas)}`);
+sistema.mostrarTareas(sistema.tareas);
 sistema.mostrarCompletadas();
 sistema.mostrarPendientes();
+sistema.mostrarTareas(obtenerNombres(sistema.tareas));
